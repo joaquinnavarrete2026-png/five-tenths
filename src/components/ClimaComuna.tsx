@@ -48,30 +48,66 @@ export const ClimaComuna = () => {
 
   if (loading) {
     return (
-      <div className="p-4 border rounded-lg shadow-sm bg-blue-50 text-blue-700 animate-pulse">
-        <p className="font-semibold">Cargando clima de {nombreComuna}...</p>
+      <div style={{ width: '380px', margin: '0 auto', background: '#0f172a', color: '#38bdf8', padding: '24px', borderRadius: '16px', border: '1px solid #1e293b', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)' }}>
+        <div style={{ width: '20px', height: '20px', border: '2px solid #38bdf8', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+        <p style={{ fontWeight: 600, margin: 0 }}>Cargando clima de {nombreComuna}...</p>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="p-4 border rounded-lg shadow-sm bg-red-50 text-red-700">
-        <p className="font-bold">Error en {nombreComuna}</p>
-        <p className="text-sm">{error}</p>
+      <div style={{ width: '380px', margin: '0 auto', background: '#450a0a', color: '#fca5a5', padding: '24px', borderRadius: '16px', border: '1px solid #7f1d1d', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)' }}>
+        <p style={{ fontWeight: 'bold', margin: 0 }}>⚠️ Error en {nombreComuna}</p>
+        <p style={{ fontSize: '14px', marginTop: '4px', margin: 0 }}>{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="p-5 border rounded-xl shadow-md bg-white hover:shadow-lg transition">
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{nombreComuna}</h3>
+    <div style={{ 
+      width: '380px', 
+      margin: '0 auto', 
+      background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)', 
+      color: '#ffffff', 
+      padding: '24px', 
+      borderRadius: '20px', 
+      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3)',
+      border: '1px solid rgba(56, 189, 248, 0.2)',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
+        <div>
+          <span style={{ 
+            fontSize: '11px', 
+            fontWeight: 'bold', 
+            textTransform: 'uppercase', 
+            letterSpacing: '0.05em', 
+            color: '#7dd3fc', 
+            background: 'rgba(30, 58, 138, 0.6)', 
+            padding: '4px 12px', 
+            borderRadius: '9999px',
+            border: '1px solid rgba(59, 130, 246, 0.3)'
+          }}>
+            Araucanía
+          </span>
+          <h3 style={{ fontSize: '24px', fontWeight: 900, color: '#ffffff', margin: '12px 0 0 0' }}>{nombreComuna}</h3>
+        </div>
+        <span style={{ fontSize: '32px' }}>⛅</span>
+      </div>
+
       {clima && (
-        <div className="space-y-1 text-gray-600">
-          <p className="text-2xl font-extrabold text-blue-600">
-            {clima.current_weather.temperature} °C
-          </p>
-          <p className="text-sm">Viento: {clima.current_weather.windspeed} km/h</p>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginTop: '20px', paddingTop: '16px', borderTop: '1px solid rgba(59, 130, 246, 0.2)' }}>
+          <div>
+            <p style={{ fontSize: '36px', fontWeight: 900, margin: 0, letterSpacing: '-0.025em' }}>
+              {clima.current_weather.temperature}
+              <span style={{ fontSize: '20px', fontWeight: 600, color: '#38bdf8', marginLeft: '4px' }}>°C</span>
+            </p>
+          </div>
+          <div style={{ textAlign: 'right', background: 'rgba(15, 23, 42, 0.6)', padding: '8px 12px', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
+            <p style={{ fontSize: '11px', color: '#94a3b8', margin: 0 }}>Viento</p>
+            <p style={{ fontSize: '14px', fontWeight: 'bold', color: '#e2e8f0', margin: '2px 0 0 0' }}>{clima.current_weather.windspeed} km/h</p>
+          </div>
         </div>
       )}
     </div>
